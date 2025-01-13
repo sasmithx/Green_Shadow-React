@@ -21,7 +21,7 @@ export function Navigation() {
                 <li className="nav-item">
                     <NavLink
                         className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
-                        to="/Dashboard"
+                        to="/dashboard"
                         id="btnDash"
                     >
                         <FontAwesomeIcon icon={faPaperPlane}  size="lg"/>

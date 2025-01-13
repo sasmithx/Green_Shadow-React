@@ -8,6 +8,7 @@
 // import { DashboardStats } from "./DashboardStats.tsx";
 // import { DashboardOrDeleteSection } from "../DashboardOrDeleteSection.tsx";
 // import { useSelector } from "react-redux";
+import "./Dashboard.css"
 
 export function Dashboard() {
     // const crops = useSelector((state: { crops: Crop[] }) => state.crops);
