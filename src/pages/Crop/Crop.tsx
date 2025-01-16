@@ -1,10 +1,18 @@
 import "./Crop.css";
-import { InputField } from "../../components/InputModal.tsx";
-import { SelectField } from "../../components/SelectModal.tsx";
-import { ActionButton } from "../../components/ActionButtonModal.tsx";
+import { InputField } from "../../components/InputModal";
+import { SelectField } from "../../components/SelectModal";
+import { ActionButton } from "../../components/ActionButtonModal";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/Store";
+import { addCrop, updateCrop, deleteCrop } from "../../reducers/CropSlice";
+import { useState } from "react";
+import { Crop as CropModel } from "../../models/Crop";
 
 export function Crop() {
-    // Dropdown options
+    const dispatch = useDispatch();
+    const crops = useSelector((state: RootState) => state.crop);
+    const [crop, setCrop] = useState<CropModel | null>(null);
+
     const commonNames = [
         { value: "RICE", label: "RICE" },
         { value: "COWPEA", label: "COWPEA" },
@@ -46,6 +54,32 @@ export function Crop() {
 
     const buttonStyle = { backgroundColor: "#5d755d" };
 
+    const handleSave = () => {
+        if (crop) {
+            dispatch(addCrop(crop));
+            setCrop(null);
+        }
+    };
+
+    const handleUpdate = () => {
+        if (crop) {
+            dispatch(updateCrop(crop));
+            setCrop(null);
+        }
+    };
+
+    const handleDelete = () => {
+        if (crop) {
+            dispatch(deleteCrop(crop));
+            setCrop(null);
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setCrop(prev => ({ ...prev, [name]: value } as CropModel));
+    };
+
     return (
         <div className="container" id="cropSection">
             <div className="container mt-3">
@@ -65,6 +99,7 @@ export function Crop() {
                         name="cropCode"
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                     <SelectField
                         label="Crop Common Name"
@@ -73,6 +108,7 @@ export function Crop() {
                         options={commonNames}
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                     <SelectField
                         label="Crop Scientific Name"
@@ -81,6 +117,7 @@ export function Crop() {
                         options={scientificNames}
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -92,6 +129,7 @@ export function Crop() {
                         type="file"
                         style={{ backgroundColor: "#558e55" }}
                         accept="image/*"
+                        onChange={handleChange}
                     />
                     <SelectField
                         label="Crop Category"
@@ -100,6 +138,7 @@ export function Crop() {
                         options={categories}
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                     <InputField
                         label="Quantity"
@@ -108,6 +147,7 @@ export function Crop() {
                         type="number"
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -119,6 +159,7 @@ export function Crop() {
                         options={seasons}
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                     <InputField
                         label="Field Codes"
@@ -126,6 +167,7 @@ export function Crop() {
                         name="fieldCodes"
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                     <InputField
                         label="Field Names"
@@ -133,14 +175,15 @@ export function Crop() {
                         name="fieldNames"
                         style={{ backgroundColor: "#558e55" }}
                         required
+                        onChange={handleChange}
                     />
                 </div>
 
                 <div className="row mt-4 mb-4">
                     <div className="col-md-12 d-flex justify-content-start gap-3">
-                        <ActionButton id="saveCropBtn" label="SAVE" style={buttonStyle} />
-                        <ActionButton id="updateCropBtn" label="UPDATE" style={buttonStyle} />
-                        <ActionButton id="deleteCropBtn" label="DELETE" style={buttonStyle} />
+                        <ActionButton id="saveCropBtn" label="SAVE" style={buttonStyle} onClick={handleSave} />
+                        <ActionButton id="updateCropBtn" label="UPDATE" style={buttonStyle} onClick={handleUpdate} />
+                        <ActionButton id="deleteCropBtn" label="DELETE" style={buttonStyle} onClick={handleDelete} />
                     </div>
                 </div>
             </form>
@@ -163,7 +206,21 @@ export function Crop() {
                     <th>Field Names</th>
                 </tr>
                 </thead>
-                <tbody id="cropTableBody">{/* Dynamically populated rows */}</tbody>
+                <tbody id="cropTableBody">
+                {crops.map((c) => (
+                    <tr key={c.cropCode}>
+                        <td>{c.cropCode}</td>
+                        <td>{c.cropCommonName}</td>
+                        <td>{c.cropScientificName}</td>
+                        <td>{c.cropImage}</td>
+                        <td>{c.category}</td>
+                        <td>{c.qty}</td>
+                        <td>{c.cropSeason}</td>
+                        <td>{c.fieldCodes}</td>
+                        <td>{c.fieldNames}</td>
+                    </tr>
+                ))}
+                </tbody>
             </table>
         </div>
     );
