@@ -18,7 +18,7 @@ export function Dashboard() {
 
     return (
         <div className="container-fluid py-2">
-            <div className="row" style={{ paddingLeft: "100px" }}>
+            <div className="row" style={{paddingLeft: "100px"}}>
                 <div className="ms-3">
                     <h3 className="mb-0 h4 font-weight-bolder">Welcome to Green Shadow PVT-LTD.</h3>
                     <p className="mb-4">
@@ -35,9 +35,10 @@ export function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <hr className="dark horizontal my-0" />
+                        <hr className="dark horizontal my-0"/>
                         <div className="card-footer p-2 ps-3">
-                            <p className="mb-0 text-sm"><span className="text-success font-weight-bolder">Healthy </span>crops Available</p>
+                            <p className="mb-0 text-sm"><span
+                                className="text-success font-weight-bolder">Healthy </span>crops Available</p>
                         </div>
                     </div>
                 </div>
@@ -51,9 +52,10 @@ export function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <hr className="dark horizontal my-0" />
+                        <hr className="dark horizontal my-0"/>
                         <div className="card-footer p-2 ps-3">
-                            <p className="mb-0 text-sm"><span className="text-success font-weight-bolder">Active </span>vehicles available</p>
+                            <p className="mb-0 text-sm"><span className="text-success font-weight-bolder">Active </span>vehicles
+                                available</p>
                         </div>
                     </div>
                 </div>
@@ -67,9 +69,10 @@ export function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <hr className="dark horizontal my-0" />
+                        <hr className="dark horizontal my-0"/>
                         <div className="card-footer p-2 ps-3">
-                            <p className="mb-0 text-sm"><span className="text-success font-weight-bolder">Strong </span>equipments available</p>
+                            <p className="mb-0 text-sm"><span className="text-success font-weight-bolder">Strong </span>equipments
+                                available</p>
                         </div>
                     </div>
                 </div>
@@ -83,9 +86,10 @@ export function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <hr className="dark horizontal my-0" />
+                        <hr className="dark horizontal my-0"/>
                         <div className="card-footer p-2 ps-3">
-                            <p className="mb-0 text-sm"><span className="text-success font-weight-bolder">Active </span>staff in this system</p>
+                            <p className="mb-0 text-sm"><span className="text-success font-weight-bolder">Active </span>staff
+                                in this system</p>
                         </div>
                     </div>
                 </div>
@@ -100,28 +104,12 @@ export function Dashboard() {
                         top: 5, right: 30, left: 20, bottom: 5,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis domain={[0, 100]} />
-                    <Tooltip />
-                    <Legend />
-                    <Bar
-                        dataKey="value"
-                        fill={({ name }: { name: string }) => {
-                            switch (name) {
-                                case 'Crops':
-                                    return '#e4b1b1';
-                                case 'Vehicles':
-                                    return '#b4dc99';
-                                case 'Equipments':
-                                    return '#81c5dd';
-                                case 'Staff':
-                                    return 'black';
-                                default:
-                                    return '#8884d8';
-                            }
-                        }}
-                    />
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <XAxis dataKey="name"/>
+                    <YAxis domain={[0, 100]}/>
+                    <Tooltip/>
+                    <Legend/>
+                    <Bar dataKey="value" fill="black"/>
                 </BarChart>
             </section>
         </div>
