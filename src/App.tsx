@@ -17,14 +17,13 @@ function App() {
       path: '/',
       element: <RootLayout/>,
       children: [
-        {path: '/', element: <Dashboard/>},
+        {path: '/dashboard', element: <Dashboard/>},
         {path: '/vehicle', element: <Vehicle/>},
         {path: '/crop', element: <Crop/>},
         {path: '/staff', element: <Staff/>},
         {path: '/equipment', element: <Equipment/>},
         {path: '/field', element: <Field/>},
         {path: '/log', element: <Log/>},
-        // {path: '/delete', element: <Delete/>},
       ]
     },
     {path: '*', element: <Error/>}

@@ -7,7 +7,7 @@ import { Staff as StaffModel } from "../../models/Staff";
 
 export function Staff() {
     const dispatch = useDispatch();
-    const staffList = useSelector((state: RootState) => state.staff.staffList);
+    const staffList = useSelector((state: RootState) => state.staff);
     const [staff, setStaff] = useState<StaffModel | null>(null);
 
     const inputStyle = { backgroundColor: "#558e55" };
@@ -37,7 +37,7 @@ export function Staff() {
 
     const handleDelete = () => {
         if (staff) {
-            dispatch(deleteStaff(staff));
+            dispatch(deleteStaff(staff.staffId));
             setStaff(null);
         }
     };
@@ -197,7 +197,7 @@ export function Staff() {
                                     <td>{s.email}</td>
                                     <td>{s.members}</td>
                                     <td>{s.fieldCode}</td>
-                                    <td>{s.vcode}</td>
+                                    <td>{s.vCode}</td>
                                 </tr>
                             ))}
                             </tbody>
