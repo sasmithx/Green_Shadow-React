@@ -81,129 +81,91 @@ export function Crop() {
     };
 
     return (
-        <div className="container" id="cropSection">
-            <div className="container mt-3">
-                <h2
-                    className="text-center mb-4"
-                    style={{ backgroundColor: "#5d755d", color: "white" }}
-                >
-                    Crop
-                </h2>
-            </div>
+        <div className="container">
+            <h2 className="text-center mb-4 mt-3" style={{ backgroundColor: "#5d755d", color: "white" }}>Crop</h2>
 
             <form id="cropForm" encType="multipart/form-data" name="FormData">
                 <div className="form-group row">
-                    <InputField
-                        label="Crop Code"
-                        id="cropCode1"
-                        name="cropCode"
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                    <SelectField
-                        label="Crop Common Name"
-                        id="cropCommonName"
-                        name="cropCommonName"
-                        options={commonNames}
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                    <SelectField
-                        label="Crop Scientific Name"
-                        id="cropScientificName"
-                        name="cropScientificName"
-                        options={scientificNames}
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group row">
-                    <InputField
-                        label="Crop Image"
-                        id="cropImage"
-                        name="cropImage"
-                        type="file"
-                        style={{ backgroundColor: "#558e55" }}
-                        accept="image/*"
-                        onChange={handleChange}
-                    />
-                    <SelectField
-                        label="Crop Category"
-                        id="category"
-                        name="category"
-                        options={categories}
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                    <InputField
-                        label="Quantity"
-                        id="qty"
-                        name="qty"
-                        type="number"
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="form-group row">
-                    <SelectField
-                        label="Crop Season"
-                        id="cropSeason"
-                        name="cropSeason"
-                        options={seasons}
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                    <InputField
-                        label="Field Codes"
-                        id="fieldCodes"
-                        name="fieldCodes"
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                    <InputField
-                        label="Field Names"
-                        id="fieldNames"
-                        name="fieldNames"
-                        style={{ backgroundColor: "#558e55" }}
-                        required
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className="row mt-4 mb-4">
-                    <div className="col-md-12 d-flex justify-content-start gap-3">
-                        <ActionButton id="saveCropBtn" label="SAVE" style={buttonStyle} onClick={handleSave} />
-                        <ActionButton id="updateCropBtn" label="UPDATE" style={buttonStyle} onClick={handleUpdate} />
-                        <ActionButton id="deleteCropBtn" label="DELETE" style={buttonStyle} onClick={handleDelete} />
+                    <div className="col-md-4">
+                        <label htmlFor="cropCode1">Crop Code</label>
+                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="cropCode1" name="cropCode" required onChange={handleChange} />
                     </div>
+                    <div className="col-md-4">
+                        <label htmlFor="cropCommonName">Crop Common Name</label>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropCommonName" name="cropCommonName" required onChange={handleChange}>
+                            {commonNames.map((option) => (
+                                <option key={option.value} value={option.value}>{option.label}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-md-4">
+                        <label htmlFor="cropScientificName">Crop Scientific Name</label>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropScientificName" name="cropScientificName" required onChange={handleChange}>
+                            {scientificNames.map((option) => (
+                                <option key={option.value} value={option.value}>{option.label}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                <div className="form-group row">
+                    <div className="col-md-4">
+                        <label htmlFor="cropImage">Crop Image</label>
+                        <input type="file" className="form-control file-input" style={{ backgroundColor: "#558e55" }} id="cropImage" name="cropImage" accept="image/*" onChange={handleChange} />
+                    </div>
+                    <div className="col-md-4">
+                        <label htmlFor="category">Crop Category</label>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="category" name="category" required onChange={handleChange}>
+                            {categories.map((option) => (
+                                <option key={option.value} value={option.value}>{option.label}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-md-4">
+                        <label htmlFor="qty">Quantity</label>
+                        <input type="number" className="form-control" style={{ backgroundColor: "#558e55" }} id="qty" name="qty" required onChange={handleChange} />
+                    </div>
+                </div>
+
+                <div className="form-group row">
+                    <div className="col-md-4">
+                        <label htmlFor="cropSeason">Crop Season</label>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropSeason" name="cropSeason" required onChange={handleChange}>
+                            {seasons.map((option) => (
+                                <option key={option.value} value={option.value}>{option.label}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-md-4">
+                        <label htmlFor="fieldCodes">Field Codes</label>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="fieldCodes" name="fieldCodes" required onChange={handleChange}>
+                        </select>
+                    </div>
+                    <div className="col-md-4">
+                        <label htmlFor="filedNames">Field Names</label>
+                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="filedNames" name="filedNames" required onChange={handleChange} />
+                    </div>
+                </div>
+
+                <div className="mt-3 col-md-12 d-flex justify-content-start gap-3">
+                    <ActionButton id="saveCropBtn" label="SAVE" style={buttonStyle} onClick={handleSave} />
+                    <ActionButton id="updateCropBtn" label="UPDATE" style={buttonStyle} onClick={handleUpdate} />
+                    <ActionButton id="deleteCropBtn" label="DELETE" style={buttonStyle} onClick={handleDelete} />
                 </div>
             </form>
 
-            <table
-                className="table table-bordered table-striped table-hover"
-                id="cropTable"
-                style={{ marginTop: "20px" }}
-            >
+            <table className="table table-bordered table-striped table-hover" id="cropTable" style={{ marginTop: "20px" }}>
                 <thead className="table-header">
                 <tr>
-                    <th>Crop Code</th>
-                    <th>Crop Common Name</th>
-                    <th>Crop Scientific Name</th>
-                    <th>Crop Image</th>
-                    <th>Category</th>
-                    <th>QTY</th>
-                    <th>Crop Season</th>
-                    <th>Field Codes</th>
-                    <th>Field Names</th>
+                    <th scope="col">Crop Code</th>
+                    <th scope="col">Crop Common Name</th>
+                    <th scope="col">Crop Scientific Name</th>
+                    <th scope="col">Crop Image</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">QTY</th>
+                    <th scope="col">Crop Season</th>
+                    <th scope="col">Field Codes</th>
+                    <th scope="col">Field Names</th>
                 </tr>
                 </thead>
                 <tbody id="cropTableBody">
