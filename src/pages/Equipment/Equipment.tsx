@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
 import { addEquipment, updateEquipment, deleteEquipment } from "../../reducers/EquipmentSlice";
 import { Equipment as EquipmentModel } from "../../models/Equipment";
-import { InputField } from "../../components/InputModal";
-import { SelectField } from "../../components/SelectModal";
-import { ActionButton } from "../../components/ActionButtonModal";
 
 export function Equipment() {
     const dispatch = useDispatch();

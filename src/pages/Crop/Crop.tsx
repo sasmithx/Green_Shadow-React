@@ -1,6 +1,4 @@
 import "./Crop.css";
-import { InputField } from "../../components/InputModal";
-import { SelectField } from "../../components/SelectModal";
 import { ActionButton } from "../../components/ActionButtonModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
