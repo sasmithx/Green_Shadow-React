@@ -1,244 +1,170 @@
 import "./Crop.css";
+import { InputField } from "../../components/InputModal.tsx";
+import { SelectField } from "../../components/SelectModal.tsx";
+import { ActionButton } from "../../components/ActionButtonModal.tsx";
 
 export function Crop() {
+    // Dropdown options
+    const commonNames = [
+        { value: "RICE", label: "RICE" },
+        { value: "COWPEA", label: "COWPEA" },
+        { value: "GREENGRAM", label: "GREENGRAM" },
+        { value: "CHIKPEA", label: "CHIKPEA" },
+        { value: "SWEETPOTATO", label: "SWEETPOTATO" },
+        { value: "CASSAVA", label: "CASSAVA" },
+    ];
+
+    const scientificNames = [
+        { value: "BG34", label: "BG34" },
+        { value: "CP10", label: "CP10" },
+        { value: "MI60", label: "MI60" },
+        { value: "CH56", label: "CH56" },
+        { value: "CS78", label: "CS78" },
+    ];
+
+    const categories = [
+        { value: "FEED", label: "FEED" },
+        { value: "FIBER", label: "FIBER" },
+        { value: "OIL", label: "OIL" },
+        { value: "CEREAL", label: "CEREAL" },
+    ];
+
+    const seasons = [
+        { value: "JANUARY", label: "JANUARY" },
+        { value: "FEBRUARY", label: "FEBRUARY" },
+        { value: "MARCH", label: "MARCH" },
+        { value: "APRIL", label: "APRIL" },
+        { value: "MAY", label: "MAY" },
+        { value: "JUNE", label: "JUNE" },
+        { value: "JULY", label: "JULY" },
+        { value: "AUGUST", label: "AUGUST" },
+        { value: "SEPTEMBER", label: "SEPTEMBER" },
+        { value: "OCTOBER", label: "OCTOBER" },
+        { value: "NOVEMBER", label: "NOVEMBER" },
+        { value: "DECEMBER", label: "DECEMBER" },
+    ];
+
+    const buttonStyle = { backgroundColor: "#5d755d" };
+
     return (
-        <>
-            <div className="container" id="cropSection">
-                <div className="container mt-3">
-                    <h2
-                        className="text-center mb-4"
-                        style={{ backgroundColor: "#5d755d", color: "white" }}
-                    >
-                        Crop
-                    </h2>
+        <div className="container" id="cropSection">
+            <div className="container mt-3">
+                <h2
+                    className="text-center mb-4"
+                    style={{ backgroundColor: "#5d755d", color: "white" }}
+                >
+                    Crop
+                </h2>
+            </div>
+
+            <form id="cropForm" encType="multipart/form-data" name="FormData">
+                <div className="form-group row">
+                    <InputField
+                        label="Crop Code"
+                        id="cropCode1"
+                        name="cropCode"
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
+                    <SelectField
+                        label="Crop Common Name"
+                        id="cropCommonName"
+                        name="cropCommonName"
+                        options={commonNames}
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
+                    <SelectField
+                        label="Crop Scientific Name"
+                        id="cropScientificName"
+                        name="cropScientificName"
+                        options={scientificNames}
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
                 </div>
 
-                <form id="cropForm" encType="multipart/form-data" name="FormData">
-                    <div className="form-group row">
-                        {/* Crop Code */}
-                        <div className="col-md-4">
-                            <label htmlFor="cropCode1">Crop Code</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="cropCode1"
-                                name="cropCode"
-                                required
-                            />
-                        </div>
+                <div className="form-group row">
+                    <InputField
+                        label="Crop Image"
+                        id="cropImage"
+                        name="cropImage"
+                        type="file"
+                        style={{ backgroundColor: "#558e55" }}
+                        accept="image/*"
+                    />
+                    <SelectField
+                        label="Crop Category"
+                        id="category"
+                        name="category"
+                        options={categories}
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
+                    <InputField
+                        label="Quantity"
+                        id="qty"
+                        name="qty"
+                        type="number"
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
+                </div>
 
-                        {/* Crop Common Name */}
-                        <div className="col-md-4">
-                            <label htmlFor="cropCommonName">Crop Common Name</label>
-                            <select
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="cropCommonName"
-                                name="cropCommonName"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Common Name
-                                </option>
-                                <option value="RICE">RICE</option>
-                                <option value="COWPEA">COWPEA</option>
-                                <option value="GREENGRAM">GREENGRAM</option>
-                                <option value="CHIKPEA">CHIKPEA</option>
-                                <option value="SWEETPOTATO">SWEETPOTATO</option>
-                                <option value="CASSAVA">CASSAVA</option>
-                            </select>
-                        </div>
+                <div className="form-group row">
+                    <SelectField
+                        label="Crop Season"
+                        id="cropSeason"
+                        name="cropSeason"
+                        options={seasons}
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
+                    <InputField
+                        label="Field Codes"
+                        id="fieldCodes"
+                        name="fieldCodes"
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
+                    <InputField
+                        label="Field Names"
+                        id="fieldNames"
+                        name="fieldNames"
+                        style={{ backgroundColor: "#558e55" }}
+                        required
+                    />
+                </div>
 
-                        {/* Crop Scientific Name */}
-                        <div className="col-md-4">
-                            <label htmlFor="cropScientificName">Crop Scientific Name</label>
-                            <select
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="cropScientificName"
-                                name="cropScientificName"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Scientific Name
-                                </option>
-                                <option value="BG34">BG34</option>
-                                <option value="CP10">CP10</option>
-                                <option value="MI60">MI60</option>
-                                <option value="CH56">CH56</option>
-                                <option value="CS78">CS78</option>
-                            </select>
-                        </div>
+                <div className="row mt-4 mb-4">
+                    <div className="col-md-12 d-flex justify-content-start gap-3">
+                        <ActionButton id="saveCropBtn" label="SAVE" style={buttonStyle} />
+                        <ActionButton id="updateCropBtn" label="UPDATE" style={buttonStyle} />
+                        <ActionButton id="deleteCropBtn" label="DELETE" style={buttonStyle} />
                     </div>
+                </div>
+            </form>
 
-                    <div className="form-group row">
-                        {/* Crop Image */}
-                        <div className="col-md-4">
-                            <label htmlFor="cropImage">Crop Image</label>
-                            <input
-                                type="file"
-                                className="form-control file-input"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="cropImage"
-                                name="cropImage"
-                                accept="image/*"
-                            />
-                        </div>
-
-                        {/* Crop Category */}
-                        <div className="col-md-4">
-                            <label htmlFor="category">Crop Category</label>
-                            <select
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="category"
-                                name="category"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Category
-                                </option>
-                                <option value="FEED">FEED</option>
-                                <option value="FIBER">FIBER</option>
-                                <option value="OIL">OIL</option>
-                                <option value="CEREAL">CEREAL</option>
-                            </select>
-                        </div>
-
-                        {/* Quantity */}
-                        <div className="col-md-4">
-                            <label htmlFor="qty">Quantity</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="qty"
-                                name="qty"
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    <div className="form-group row">
-                        {/* Crop Season */}
-                        <div className="col-md-4">
-                            <label htmlFor="cropSeason">Crop Season</label>
-                            <select
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="cropSeason"
-                                name="cropSeason"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Season
-                                </option>
-                                <option value="JANUARY">JANUARY</option>
-                                <option value="FEBRUARY">FEBRUARY</option>
-                                <option value="MARCH">MARCH</option>
-                                <option value="APRIL">APRIL</option>
-                                <option value="MAY">MAY</option>
-                                <option value="JUNE">JUNE</option>
-                                <option value="JULY">JULY</option>
-                                <option value="AUGUST">AUGUST</option>
-                                <option value="SEPTEMBER">SEPTEMBER</option>
-                                <option value="OCTOBER">OCTOBER</option>
-                                <option value="NOVEMBER">NOVEMBER</option>
-                                <option value="DECEMBER">DECEMBER</option>
-                            </select>
-                        </div>
-
-                        {/* Field Codes */}
-                        <div className="col-md-4">
-                            <label htmlFor="fieldCodes">Field Codes</label>
-                            <select
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="fieldCodes"
-                                name="fieldCodes"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Field Code
-                                </option>
-                                {/* Dynamically populated options */}
-                            </select>
-                        </div>
-
-                        {/* Field Names */}
-                        <div className="col-md-4">
-                            <label htmlFor="fieldNames">Field Names</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="fieldNames"
-                                name="fieldNames"
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    <div className="row-md-4 mt-4 mb-4">
-                        {/* Buttons */}
-                        <div className="col-md-12 d-flex justify-content-start gap-3">
-                            <button
-                                type="submit"
-                                className="btn btn-dark"
-                                style={{backgroundColor: "#5d755d"}}
-                                id="saveCropBtn"
-                            >
-                                SAVE
-                            </button>
-                            <button
-                                type="button"
-                                className="btn btn-dark"
-                                style={{backgroundColor: "#5d755d"}}
-                                id="updateCropBtn"
-                            >
-                                UPDATE
-                            </button>
-                            <button
-                                type="button"
-                                className="btn btn-dark"
-                                style={{backgroundColor: "#5d755d"}}
-                                id="deleteCropBtn"
-                            >
-                                DELETE
-                            </button>
-                        </div>
-                        </div>
-                </form>
-
-                <table
-                    className="table table-bordered table-striped table-hover"
-                    id="cropTable"
-                    style={{ marginTop: "20px" }}
-                >
-                    <thead className="table-header">
-                    <tr>
-                        <th>Crop Code</th>
-                        <th>Crop Common Name</th>
-                        <th>Crop Scientific Name</th>
-                        <th>Crop Image</th>
-                        <th>Category</th>
-                        <th>QTY</th>
-                        <th>Crop Season</th>
-                        <th>Field Codes</th>
-                        <th>Field Names</th>
-                    </tr>
-                    </thead>
-                    <tbody id="cropTableBody">
-                    {/* Dynamically populated rows */}
-                    </tbody>
-                </table>
-            </div>
-        </>
+            <table
+                className="table table-bordered table-striped table-hover"
+                id="cropTable"
+                style={{ marginTop: "20px" }}
+            >
+                <thead className="table-header">
+                <tr>
+                    <th>Crop Code</th>
+                    <th>Crop Common Name</th>
+                    <th>Crop Scientific Name</th>
+                    <th>Crop Image</th>
+                    <th>Category</th>
+                    <th>QTY</th>
+                    <th>Crop Season</th>
+                    <th>Field Codes</th>
+                    <th>Field Names</th>
+                </tr>
+                </thead>
+                <tbody id="cropTableBody">{/* Dynamically populated rows */}</tbody>
+            </table>
+        </div>
     );
 }

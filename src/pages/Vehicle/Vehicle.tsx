@@ -1,6 +1,34 @@
 import "./Vehicle.css";
+import {InputField} from "../../components/InputModal.tsx";
+import {SelectField} from "../../components/SelectModal.tsx";
+import {ActionButton} from "../../components/ActionButtonModal.tsx";
 
+
+// Vehicle Component
 export function Vehicle() {
+    const inputStyle = { backgroundColor: "#558e55" };
+    const buttonStyle = { backgroundColor: "#5d755d" };
+
+    const vehicleCategories = [
+        { value: "CAR", label: "CAR" },
+        { value: "TRUCK", label: "TRUCK" },
+        { value: "TRACTOR", label: "TRACTOR" },
+        { value: "VAN", label: "VAN" },
+        { value: "SUV", label: "SUV" },
+        { value: "CRANE", label: "CRANE" },
+        { value: "ATV", label: "ATV" },
+    ];
+
+    const fuelTypes = [
+        { value: "PETROL", label: "PETROL" },
+        { value: "DIESEL", label: "DIESEL" },
+    ];
+
+    const statuses = [
+        { value: "AVAILABLE", label: "AVAILABLE" },
+        { value: "NOT", label: "NOT" },
+    ];
+
     return (
         <div className="container" id="vehicleSection">
             <div className="container mt-3">
@@ -12,156 +40,76 @@ export function Vehicle() {
                 </h2>
 
                 <form id="vehicleForm">
-                    {/* Vehicle Code and License Plate */}
                     <div className="row">
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="vehicleCode">Vehicle Code</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="vehicleCode"
-                                name="vehicleCode"
-                                required
-                            />
-                        </div>
-
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="licensePlateNumber">License Plate Number</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="licensePlateNumber"
-                                name="licensePlateNumber"
-                                required
-                            />
-                        </div>
+                        <InputField
+                            label="Vehicle Code"
+                            id="vehicleCode"
+                            name="vehicleCode"
+                            required
+                            style={inputStyle}
+                        />
+                        <InputField
+                            label="License Plate Number"
+                            id="licensePlateNumber"
+                            name="licensePlateNumber"
+                            required
+                            style={inputStyle}
+                        />
                     </div>
 
-                    {/* Dropdown Selects */}
                     <div className="row">
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor="vehicleCategory">Vehicle Category</label>
-                            <select
-                                className="form-control"
-                                id="vehicleCategory"
-                                style={{ backgroundColor: "#558e55" }}
-                                name="vehicleCategory"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Category
-                                </option>
-                                <option value="CAR">CAR</option>
-                                <option value="TRUCK">TRUCK</option>
-                                <option value="TRACTOR">TRACTOR</option>
-                                <option value="VAN">VAN</option>
-                                <option value="SUV">SUV</option>
-                                <option value="CRANE">CRANE</option>
-                                <option value="ATV">ATV</option>
-                            </select>
-                        </div>
-
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor="fuelType">Fuel Type</label>
-                            <select
-                                className="form-control"
-                                id="fuelType"
-                                style={{ backgroundColor: "#558e55" }}
-                                name="fuelType"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Fuel Type
-                                </option>
-                                <option value="PETROL">PETROL</option>
-                                <option value="DIESEL">DIESEL</option>
-                            </select>
-                        </div>
-
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor="status">Status</label>
-                            <select
-                                className="form-control"
-                                id="status"
-                                style={{ backgroundColor: "#558e55" }}
-                                name="status"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Status
-                                </option>
-                                <option value="AVAILABLE">AVAILABLE</option>
-                                <option value="NOT">NOT</option>
-                            </select>
-                        </div>
+                        <SelectField
+                            label="Vehicle Category"
+                            id="vehicleCategory"
+                            name="vehicleCategory"
+                            options={vehicleCategories}
+                            required
+                            style={inputStyle}
+                        />
+                        <SelectField
+                            label="Fuel Type"
+                            id="fuelType"
+                            name="fuelType"
+                            options={fuelTypes}
+                            required
+                            style={inputStyle}
+                        />
+                        <SelectField
+                            label="Status"
+                            id="status"
+                            name="status"
+                            options={statuses}
+                            required
+                            style={inputStyle}
+                        />
                     </div>
 
-                    {/* Staff ID and Remarks */}
                     <div className="row">
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor="allocatedStaffId">Allocated Staff ID</label>
-                            <select
-                                className="form-control"
-                                id="allocatedStaffId"
-                                style={{ backgroundColor: "#558e55" }}
-                                name="allocatedStaffId"
-                                defaultValue=""
-                                required
-                            >
-                                <option value="" disabled>
-                                    Select Staff
-                                </option>
-                            </select>
-                        </div>
-                        <div className="col-md-8 mb-3">
-                            <label htmlFor="remarks">Remarks</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                style={{ backgroundColor: "#558e55" }}
-                                id="remarks"
-                                name="remarks"
-                            />
-                        </div>
+                        <SelectField
+                            label="Allocated Staff ID"
+                            id="allocatedStaffId"
+                            name="allocatedStaffId"
+                            options={[]}
+                            required
+                            style={inputStyle}
+                        />
+                        <InputField
+                            label="Remarks"
+                            id="remarks"
+                            name="remarks"
+                            style={inputStyle}
+                        />
                     </div>
 
-                    {/* Buttons */}
                     <div className="row mt-3 mb-4">
                         <div className="col-md-12 d-flex justify-content-start gap-3">
-                            <button
-                                type="button"
-                                className="btn btn-dark px-4"
-                                style={{ backgroundColor: "#5d755d" }}
-                                id="saveVbtn"
-                            >
-                                SAVE
-                            </button>
-                            <button
-                                type="button"
-                                className="btn btn-dark px-4"
-                                style={{ backgroundColor: "#5d755d" }}
-                                id="updateVbtn"
-                            >
-                                UPDATE
-                            </button>
-                            <button
-                                type="button"
-                                className="btn btn-dark px-4"
-                                style={{ backgroundColor: "#5d755d" }}
-                                id="deleteVbtn"
-                            >
-                                DELETE
-                            </button>
+                            <ActionButton id="saveVbtn" label="SAVE" style={buttonStyle} />
+                            <ActionButton id="updateVbtn" label="UPDATE" style={buttonStyle} />
+                            <ActionButton id="deleteVbtn" label="DELETE" style={buttonStyle} />
                         </div>
                     </div>
                 </form>
 
-                {/* Table */}
                 <table className="table table-bordered table-striped mt-5" id="vTable">
                     <thead className="thead-dark">
                     <tr>
@@ -175,7 +123,6 @@ export function Vehicle() {
                     </tr>
                     </thead>
                     <tbody id="vTbody">
-                    {/* Dynamic rows go here */}
                     <tr></tr>
                     </tbody>
                 </table>
