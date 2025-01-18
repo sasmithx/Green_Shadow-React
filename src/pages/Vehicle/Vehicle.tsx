@@ -1,17 +1,17 @@
 import "./Vehicle.css";
-import { InputField } from "../../components/InputModal.tsx";
-import { SelectField } from "../../components/SelectModal.tsx";
-import { ActionButton } from "../../components/ActionButtonModal.tsx";
+import { InputField } from "../../components/InputModal";
+import { SelectField } from "../../components/SelectModal";
+import { ActionButton } from "../../components/ActionButtonModal";
 import { useDispatch, useSelector } from "react-redux";
-import { addVehicle, updateVehicle, deleteVehicle } from "../../reducers/VehicleSlice.ts";
+import { addVehicle, updateVehicle, deleteVehicle } from "../../reducers/VehicleSlice";
 import { useState } from "react";
-import { Vehicle as VehicleModel } from "../../models/Vehicle.ts";
-import {RootState} from "@reduxjs/toolkit/query";
+import { Vehicle as VehicleModel } from "../../models/Vehicle";
+import { RootState } from "../../store/Store";
 
 export function Vehicle() {
     const dispatch = useDispatch();
     const vehicles = useSelector((state: RootState) => state.vehicle);
-    const [vehicle, setVehicle] = useState<VehicleModel | null>(null);
+    const [vehicle, setVehicle] = useState<VehicleModel>({} as VehicleModel);
 
     const inputStyle = { backgroundColor: "#558e55" };
     const buttonStyle = { backgroundColor: "#5d755d" };
@@ -39,27 +39,34 @@ export function Vehicle() {
     const handleSave = () => {
         if (vehicle) {
             dispatch(addVehicle(vehicle));
-            setVehicle(null);
+            setVehicle({} as VehicleModel);
+            document.getElementById("vehicleForm").reset();
         }
     };
 
     const handleUpdate = () => {
         if (vehicle) {
             dispatch(updateVehicle(vehicle));
-            setVehicle(null);
+            setVehicle({} as VehicleModel);
+            document.getElementById("vehicleForm").reset();
         }
     };
 
     const handleDelete = () => {
         if (vehicle) {
             dispatch(deleteVehicle(vehicle));
-            setVehicle(null);
+            setVehicle({} as VehicleModel);
+            document.getElementById("vehicleForm").reset();
         }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setVehicle(prev => ({ ...prev, [name]: value } as VehicleModel));
+    };
+
+    const handleRowDoubleClick = (v: VehicleModel) => {
+        setVehicle(v);
     };
 
     return (
@@ -80,6 +87,7 @@ export function Vehicle() {
                             name="vehicleCode"
                             required
                             style={inputStyle}
+                            value={vehicle.vehicleCode || ""}
                             onChange={handleChange}
                         />
                         <InputField
@@ -88,6 +96,7 @@ export function Vehicle() {
                             name="licensePlateNumber"
                             required
                             style={inputStyle}
+                            value={vehicle.licensePlateNumber || ""}
                             onChange={handleChange}
                         />
                     </div>
@@ -100,6 +109,7 @@ export function Vehicle() {
                             options={vehicleCategories}
                             required
                             style={inputStyle}
+                            value={vehicle.vehicleCategory || ""}
                             onChange={handleChange}
                         />
                         <SelectField
@@ -109,6 +119,7 @@ export function Vehicle() {
                             options={fuelTypes}
                             required
                             style={inputStyle}
+                            value={vehicle.fuelType || ""}
                             onChange={handleChange}
                         />
                         <SelectField
@@ -118,6 +129,7 @@ export function Vehicle() {
                             options={statuses}
                             required
                             style={inputStyle}
+                            value={vehicle.status || ""}
                             onChange={handleChange}
                         />
                     </div>
@@ -129,6 +141,7 @@ export function Vehicle() {
                             name="allocatedStaffId"
                             required
                             style={inputStyle}
+                            value={vehicle.allocatedStaffId || ""}
                             onChange={handleChange}
                         />
                         <InputField
@@ -136,6 +149,7 @@ export function Vehicle() {
                             id="remarks"
                             name="remarks"
                             style={inputStyle}
+                            value={vehicle.remarks || ""}
                             onChange={handleChange}
                         />
                     </div>
@@ -162,8 +176,8 @@ export function Vehicle() {
                     </tr>
                     </thead>
                     <tbody id="vTbody">
-                    {vehicles.map((v) => (
-                        <tr key={v.vehicleCode}>
+                    {vehicles.map((v: VehicleModel) => (
+                        <tr key={v.vehicleCode} onDoubleClick={() => handleRowDoubleClick(v)}>
                             <td>{v.vehicleCode}</td>
                             <td>{v.licensePlateNumber}</td>
                             <td>{v.vehicleCategory}</td>
