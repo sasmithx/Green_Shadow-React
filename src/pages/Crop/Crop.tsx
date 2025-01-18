@@ -56,6 +56,7 @@ export function Crop() {
         if (crop) {
             dispatch(addCrop(crop));
             setCrop(null);
+            document.getElementById("cropForm").reset();
         }
     };
 
@@ -63,6 +64,7 @@ export function Crop() {
         if (crop) {
             dispatch(updateCrop(crop));
             setCrop(null);
+            document.getElementById("cropForm").reset();
         }
     };
 
@@ -70,12 +72,17 @@ export function Crop() {
         if (crop) {
             dispatch(deleteCrop(crop));
             setCrop(null);
+            document.getElementById("cropForm").reset();
         }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setCrop(prev => ({ ...prev, [name]: value } as CropModel));
+    };
+
+    const handleRowDoubleClick = (c: CropModel) => {
+        setCrop(c);
     };
 
     return (
@@ -86,11 +93,11 @@ export function Crop() {
                 <div className="form-group row">
                     <div className="col-md-4">
                         <label htmlFor="cropCode1">Crop Code</label>
-                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="cropCode1" name="cropCode" required onChange={handleChange} />
+                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="cropCode1" name="cropCode" required value={crop?.cropCode || ""} onChange={handleChange} />
                     </div>
                     <div className="col-md-4">
                         <label htmlFor="cropCommonName">Crop Common Name</label>
-                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropCommonName" name="cropCommonName" required onChange={handleChange}>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropCommonName" name="cropCommonName" required value={crop?.cropCommonName || ""} onChange={handleChange}>
                             {commonNames.map((option) => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
@@ -98,7 +105,7 @@ export function Crop() {
                     </div>
                     <div className="col-md-4">
                         <label htmlFor="cropScientificName">Crop Scientific Name</label>
-                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropScientificName" name="cropScientificName" required onChange={handleChange}>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropScientificName" name="cropScientificName" required value={crop?.cropScientificName || ""} onChange={handleChange}>
                             {scientificNames.map((option) => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
@@ -113,7 +120,7 @@ export function Crop() {
                     </div>
                     <div className="col-md-4">
                         <label htmlFor="category">Crop Category</label>
-                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="category" name="category" required onChange={handleChange}>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="category" name="category" required value={crop?.category || ""} onChange={handleChange}>
                             {categories.map((option) => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
@@ -121,14 +128,14 @@ export function Crop() {
                     </div>
                     <div className="col-md-4">
                         <label htmlFor="qty">Quantity</label>
-                        <input type="number" className="form-control" style={{ backgroundColor: "#558e55" }} id="qty" name="qty" required onChange={handleChange} />
+                        <input type="number" className="form-control" style={{ backgroundColor: "#558e55" }} id="qty" name="qty" required value={crop?.qty || ""} onChange={handleChange} />
                     </div>
                 </div>
 
                 <div className="form-group row">
                     <div className="col-md-4">
                         <label htmlFor="cropSeason">Crop Season</label>
-                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropSeason" name="cropSeason" required onChange={handleChange}>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="cropSeason" name="cropSeason" required value={crop?.cropSeason || ""} onChange={handleChange}>
                             {seasons.map((option) => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
@@ -136,12 +143,12 @@ export function Crop() {
                     </div>
                     <div className="col-md-4">
                         <label htmlFor="fieldCodes">Field Codes</label>
-                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="fieldCodes" name="fieldCodes" required onChange={handleChange}>
+                        <select className="form-control" style={{ backgroundColor: "#558e55" }} id="fieldCodes" name="fieldCodes" required value={crop?.fieldCodes || ""} onChange={handleChange}>
                         </select>
                     </div>
                     <div className="col-md-4">
                         <label htmlFor="filedNames">Field Names</label>
-                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="filedNames" name="filedNames" required onChange={handleChange} />
+                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="filedNames" name="filedNames" required value={crop?.fieldNames || ""} onChange={handleChange} />
                     </div>
                 </div>
 
@@ -168,7 +175,7 @@ export function Crop() {
                 </thead>
                 <tbody id="cropTableBody">
                 {crops.map((c) => (
-                    <tr key={c.cropCode}>
+                    <tr key={c.cropCode} onDoubleClick={() => handleRowDoubleClick(c)}>
                         <td>{c.cropCode}</td>
                         <td>{c.cropCommonName}</td>
                         <td>{c.cropScientificName}</td>
