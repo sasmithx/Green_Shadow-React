@@ -56,7 +56,10 @@ export function Crop() {
         if (crop) {
             dispatch(addCrop(crop));
             setCrop(null);
-            document.getElementById("cropForm").reset();
+            const form = document.getElementById("cropForm") as HTMLFormElement;
+            if (form) {
+                form.reset();
+            }
         }
     };
 
@@ -64,7 +67,10 @@ export function Crop() {
         if (crop) {
             dispatch(updateCrop(crop));
             setCrop(null);
-            document.getElementById("cropForm").reset();
+            const form = document.getElementById("cropForm") as HTMLFormElement;
+            if (form) {
+                form.reset();
+            }
         }
     };
 
@@ -72,7 +78,10 @@ export function Crop() {
         if (crop) {
             dispatch(deleteCrop(crop));
             setCrop(null);
-            document.getElementById("cropForm").reset();
+            const form = document.getElementById("cropForm") as HTMLFormElement;
+            if (form) {
+                form.reset();
+            }
         }
     };
 
@@ -144,11 +153,12 @@ export function Crop() {
                     <div className="col-md-4">
                         <label htmlFor="fieldCodes">Field Codes</label>
                         <select className="form-control" style={{ backgroundColor: "#558e55" }} id="fieldCodes" name="fieldCodes" required value={crop?.fieldCodes || ""} onChange={handleChange}>
+                            {/* Add options here */}
                         </select>
                     </div>
                     <div className="col-md-4">
-                        <label htmlFor="filedNames">Field Names</label>
-                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="filedNames" name="filedNames" required value={crop?.fieldNames || ""} onChange={handleChange} />
+                        <label htmlFor="fieldNames">Field Names</label>
+                        <input type="text" className="form-control" style={{ backgroundColor: "#558e55" }} id="fieldNames" name="fieldNames" required value={crop?.fieldNames || ""} onChange={handleChange} />
                     </div>
                 </div>
 
