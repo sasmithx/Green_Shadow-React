@@ -3,7 +3,7 @@
 
 # Green Shadow React Application
 
-This React application is designed to streamline and simplify the operations of agricultural management. The primary goal is to provide an intuitive interface for managing various aspects of a farm, including crops, equipment, vehicles, staff, fields, and crop monitoring. Below is a breakdown of each module and its purpose:
+This React application is designed to streamline and simplify the operations of agricultural management. The primary goal is to provide an intuitive interface for managing various aspects of a farm, including crops, equipment, vehicles, staff, fields, and crop monitoring.
 
 ## Features
 
