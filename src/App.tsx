@@ -17,6 +17,7 @@ function App() {
       path: '/',
       element: <RootLayout/>,
       children: [
+        {index: true, element: <Dashboard/>},
         {path: '/dashboard', element: <Dashboard/>},
         {path: '/vehicle', element: <Vehicle/>},
         {path: '/crop', element: <Crop/>},
@@ -29,9 +30,9 @@ function App() {
     {path: '*', element: <Error/>}
   ]);
   return (
-    <>
+      <>
         <RouterProvider router={routes}></RouterProvider>
-    </>
+      </>
   )
 }
 
