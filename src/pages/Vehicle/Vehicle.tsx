@@ -11,6 +11,7 @@ import { RootState } from "../../store/Store";
 export function Vehicle() {
     const dispatch = useDispatch();
     const vehicles = useSelector((state: RootState) => state.vehicle);
+    const staff = useSelector((state: RootState) => state.staff);
     const [vehicle, setVehicle] = useState<VehicleModel>({} as VehicleModel);
 
     const inputStyle = { backgroundColor: "#558e55" };
@@ -135,10 +136,11 @@ export function Vehicle() {
                     </div>
 
                     <div className="row">
-                        <InputField
+                        <SelectField
                             label="Allocated Staff ID"
                             id="allocatedStaffId"
                             name="allocatedStaffId"
+                            options={staff.map(s => ({ value: s.staffId, label: s.staffId }))}
                             required
                             style={inputStyle}
                             value={vehicle.allocatedStaffId || ""}

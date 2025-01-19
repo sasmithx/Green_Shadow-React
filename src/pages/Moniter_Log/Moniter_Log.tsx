@@ -1,4 +1,4 @@
-export function Log() {
+export function Moniter_Log() {
     return (
         <>
             <div className="container" id="logSection">
