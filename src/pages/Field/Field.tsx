@@ -12,7 +12,7 @@ export function Field() {
     const fields = useSelector((state: RootState) => state.field.fields);
     const [field, setField] = useState<FieldModel>({} as FieldModel);
 
-    const inputStyle = { backgroundColor: "#558e55" };
+    const inputStyle = { backgroundColor: "#558e55", width: "100%" };
     const buttonStyle = { backgroundColor: "#5d755d" };
 
     const handleSave = () => {
@@ -63,7 +63,7 @@ export function Field() {
             <div className="container">
                 <form id="fieldForm" className="mb-5">
                     <div className="row mb-3">
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <InputField
                                 label="Field Code"
                                 id="fieldCode"
@@ -74,7 +74,7 @@ export function Field() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <InputField
                                 label="Field Name"
                                 id="fieldName"
@@ -85,7 +85,7 @@ export function Field() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <InputField
                                 label="Field Location"
                                 id="fieldLocation"
@@ -96,10 +96,7 @@ export function Field() {
                                 onChange={handleChange}
                             />
                         </div>
-                    </div>
-
-                    <div className="row mb-3">
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <InputField
                                 label="Size"
                                 id="size"
@@ -111,7 +108,10 @@ export function Field() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="col-md-4">
+                    </div>
+
+                    <div className="row mb-3">
+                        <div className="col-md-3">
                             <SelectField
                                 label="Crop Code"
                                 id="cropCode"
@@ -123,7 +123,7 @@ export function Field() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <InputField
                                 label="Crop Name"
                                 id="nameOfCrop"
@@ -134,10 +134,7 @@ export function Field() {
                                 onChange={handleChange}
                             />
                         </div>
-                    </div>
-
-                    <div className="row mb-3">
-                        <div className="col-md-6">
+                        <div className="col-md-3">
                             <SelectField
                                 label="Staff ID"
                                 id="staffId"
@@ -149,7 +146,7 @@ export function Field() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-3">
                             <InputField
                                 label="Field Image"
                                 id="fieldImage1"

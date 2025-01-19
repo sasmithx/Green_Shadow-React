@@ -7,7 +7,7 @@ export function Log() {
                         className="text-center mb-4"
                         style={{ backgroundColor: "#5d755d", color: "white" }}
                     >
-                        Moniter Log
+                        Monitor Log
                     </h2>
                 </div>
             </div>
