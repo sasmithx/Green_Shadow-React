@@ -9,6 +9,7 @@ import { Crop as CropModel } from "../../models/Crop";
 export function Crop() {
     const dispatch = useDispatch();
     const crops = useSelector((state: RootState) => state.crop);
+    const fields = useSelector((state: RootState) => state.field.fields);
     const [crop, setCrop] = useState<CropModel | null>(null);
 
     const commonNames = [
@@ -153,7 +154,9 @@ export function Crop() {
                     <div className="col-md-4">
                         <label htmlFor="fieldCodes">Field Codes</label>
                         <select className="form-control" style={{ backgroundColor: "#558e55" }} id="fieldCodes" name="fieldCodes" required value={crop?.fieldCodes || ""} onChange={handleChange}>
-                            {/* Add options here */}
+                            {fields.map((field) => (
+                                <option key={field.fieldCode} value={field.fieldCode}>{field.fieldCode}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="col-md-4">
