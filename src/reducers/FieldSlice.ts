@@ -7,7 +7,12 @@ interface FieldState {
 }
 
 const initialState: FieldState = {
-    fields: [],
+    fields: [
+        new Field("FI002", "Field 2", "Location 2", 20, "CR002", "Corn", "S002", "field2.jpg"),
+        new Field("FI003", "Field 3", "Location 3", 15, "CR003", "Rice", "S003", "field3.jpg"),
+        new Field("FI004", "Field 4", "Location 4", 25, "CR004", "Soybean", "S004", "field4.jpg"),
+        new Field("FI005", "Field 5", "Location 5", 30, "CR005", "Barley", "S005", "field5.jpg")
+    ],
 };
 
 const fieldSlice = createSlice({

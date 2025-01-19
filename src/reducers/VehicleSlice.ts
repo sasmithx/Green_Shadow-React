@@ -1,7 +1,13 @@
 import { Vehicle } from "../models/Vehicle.ts";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: Vehicle[] = [];
+const initialState: Vehicle[] = [
+    new Vehicle("V001", "ABC123", "CAR", "PETROL", "AVAILABLE", "S001", "No remarks"),
+    new Vehicle("V002", "DEF456", "TRUCK", "DIESEL", "NOT", "S002", "Needs maintenance"),
+    new Vehicle("V003", "GHI789", "TRACTOR", "DIESEL", "AVAILABLE", "S003", "Newly acquired"),
+    new Vehicle("V004", "JKL012", "VAN", "PETROL", "AVAILABLE", "S004", "In good condition"),
+    new Vehicle("V005", "MNO345", "SUV", "PETROL", "NOT", "S005", "Under repair")
+];
 
 const vehicleSlice = createSlice({
     name: 'vehicle',
