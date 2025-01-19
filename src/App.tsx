@@ -8,7 +8,7 @@ import {Crop} from "./pages/Crop/Crop.tsx";
 import {Staff} from "./pages/Staff/Staff.tsx";
 import {Equipment} from "./pages/Equipment/Equipment.tsx";
 import {Field} from "./pages/Field/Field.tsx";
-import {Moniter_Log} from "./pages/Moniter_Log/Moniter_Log.tsx";
+import {MonitorLog} from "./pages/MonitorLog/MonitorLog.tsx";
 
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
         {path: '/staff', element: <Staff/>},
         {path: '/equipment', element: <Equipment/>},
         {path: '/field', element: <Field/>},
-        {path: '/log', element: <Moniter_Log/>},
+        {path: '/log', element: <MonitorLog/>},
       ]
     },
     {path: '*', element: <Error/>}
